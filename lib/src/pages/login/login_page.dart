@@ -9,11 +9,14 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
 
   @override
   void initState() {
     super.initState();
     _usernameController.text = "admin";
+    _passwordController.text = "1234";
   }
 
   @override
@@ -35,6 +38,13 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(labelText: "Username"),
+              ),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: "Password"),
+              ),
+              SizedBox(
+                height: 24,
               ),
               ..._buildButtons()
             ],
