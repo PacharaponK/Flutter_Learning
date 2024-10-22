@@ -29,8 +29,23 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login Page"),
+        backgroundColor: Colors.deepPurpleAccent,
       ),
-      body: Text("This is Login Page"),
+      body: Container(
+        width: double.infinity,
+        color: Colors.black12,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("This is Login Page", style: TextStyle(color: Colors.redAccent),), // only text
+            Text("This is Login Page"),
+            Text("This is Login Page"),
+            Text("This is Login Page"),
+            Container(child: Text("This is Login Page"), color: Colors.tealAccent,), // text area
+          ],
+        ),
+      ),
     );
   }
 }
