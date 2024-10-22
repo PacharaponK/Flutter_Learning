@@ -11,7 +11,6 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
@@ -32,22 +31,22 @@ class _LoginPageState extends State<LoginPage> {
         child: Padding(
           // padding: const EdgeInsets.only(top: 32.0),
           padding: const EdgeInsets.all(32.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextField(
-                controller: _usernameController,
-                decoration: InputDecoration(labelText: "Username"),
+          child: Card(
+            child: Container(
+              padding: const EdgeInsets.all(32.0),
+              height: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ..._buildTextFields(),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  ..._buildButtons(),
+                ],
               ),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(labelText: "Password"),
-              ),
-              SizedBox(
-                height: 24,
-              ),
-              ..._buildButtons()
-            ],
+            ),
           ),
         ),
       ),
@@ -62,6 +61,19 @@ class _LoginPageState extends State<LoginPage> {
   void _handleOnResetClick() {
     _usernameController.text = "";
     _passwordController.text = "";
+  }
+
+  _buildTextFields() {
+    return [
+      TextField(
+        controller: _usernameController,
+        decoration: InputDecoration(labelText: "Username"),
+      ),
+      TextField(
+        controller: _passwordController,
+        decoration: InputDecoration(labelText: "Password"),
+      ),
+    ];
   }
 
   _buildButtons() {
