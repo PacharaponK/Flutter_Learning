@@ -56,10 +56,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleOnLoginClick() {
     print("username = ${_usernameController.text}");
+    print("password = ${_passwordController.text}");
   }
 
   void _handleOnResetClick() {
     _usernameController.text = "";
+    _passwordController.text = "";
   }
 
   _buildButtons() {
