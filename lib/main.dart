@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
             Text("This is Login Page"),
             Text("This is Login Page"),
             Text("This is Login Page"),
-            Container(child: Text("This is Login Page"), color: Colors.tealAccent,), // text area
+            Container(child: Text("This is Login Page"), color: Color(0xffEF919F),), // text area
           ],
         ),
       ),
