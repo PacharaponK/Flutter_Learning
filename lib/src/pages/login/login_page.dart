@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop01/src/pages/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login Page"),
+        title: const Text("Login Page"),
         backgroundColor: Colors.deepPurpleAccent,
       ),
       body: Container(
@@ -34,13 +35,12 @@ class _LoginPageState extends State<LoginPage> {
           child: Card(
             child: Container(
               padding: const EdgeInsets.all(32.0),
-              height: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ..._buildTextFields(),
-                  SizedBox(
+                  const SizedBox(
                     height: 24,
                   ),
                   ..._buildButtons(),
@@ -56,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
   void _handleOnLoginClick() {
     print("username = ${_usernameController.text}");
     print("password = ${_passwordController.text}");
+    Navigator.pushNamed(context, AppRoute.home);
   }
 
   void _handleOnResetClick() {
@@ -67,11 +68,11 @@ class _LoginPageState extends State<LoginPage> {
     return [
       TextField(
         controller: _usernameController,
-        decoration: InputDecoration(labelText: "Username"),
+        decoration: const InputDecoration(labelText: "Username"),
       ),
       TextField(
         controller: _passwordController,
-        decoration: InputDecoration(labelText: "Password"),
+        decoration: const InputDecoration(labelText: "Password"),
       ),
     ];
   }
@@ -80,12 +81,22 @@ class _LoginPageState extends State<LoginPage> {
     return [
       ElevatedButton(
         onPressed: _handleOnLoginClick,
-        child: Text("Login"),
+        child: const Text("Sign In"),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue, foregroundColor: Colors.white),
       ),
       OutlinedButton(
         onPressed: _handleOnResetClick,
-        child: Text("Reset"),
+        child: const Text("Reset"),
+      ),
+      ElevatedButton(
+        onPressed: _handleOnSignUpClick,
+        child: const Text("Register"),
       ),
     ];
+  }
+
+  void _handleOnSignUpClick() {
+    Navigator.pushNamed(context, AppRoute.register);
   }
 }
