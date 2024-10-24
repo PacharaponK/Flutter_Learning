@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workshop01/src/app.dart';
 import 'package:workshop01/src/bloc/login/login_bloc.dart';
+import 'package:workshop01/src/models/user.dart';
 import 'package:workshop01/src/pages/routes.dart';
 
 //Stateful Class, Variable Can Create and Change
@@ -84,9 +85,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleOnLoginClick() {
-    print("username = ${_usernameController.text}");
-    print("password = ${_passwordController.text}");
+    // print("username = ${_usernameController.text}");
+    // print("password = ${_passwordController.text}");
     Navigator.pushNamed(context, AppRoute.home);
+    final user = User(username: _usernameController.text, password: _passwordController.text);
+    context.read<LoginBloc>().add(LoginEventLogin(user));
   }
 
   void _handleOnResetClick() {
