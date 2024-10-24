@@ -27,7 +27,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            return Text("Login Page ${state.count}");
+          },
+        ),
         backgroundColor: Colors.deepPurpleAccent,
       ),
       body: Container(
@@ -127,10 +131,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleOnClickAdd() {
-    context.read<LoginBloc>().add(LoginEventAdd());// state manage
+    context.read<LoginBloc>().add(LoginEventAdd()); // state manage
   }
 
   void _handleOnClickRemove() {
-    context.read<LoginBloc>().add(LoginEventRemove());// state manage
+    context.read<LoginBloc>().add(LoginEventRemove()); // state manage
   }
 }
