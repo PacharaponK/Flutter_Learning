@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  int count = 0;
 
   @override
   void initState() {
@@ -44,6 +45,13 @@ class _LoginPageState extends State<LoginPage> {
                     height: 24,
                   ),
                   ..._buildButtons(),
+                  Row(
+                    children: [
+                      Text("Debug: ${count}"),
+                      IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+                      IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                    ],
+                  )
                 ],
               ),
             ),
