@@ -5,6 +5,8 @@ import 'package:workshop01/src/pages/home/home_page.dart';
 import 'package:workshop01/src/pages/routes.dart';
 import 'pages/login/login_page.dart';
 
+final navigatorState = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
         title: "Working Hour",
         routes: AppRoute.all,
         home: LoginPage(),
+        navigatorKey: navigatorState,
       ),
     );
   }
