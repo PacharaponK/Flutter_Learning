@@ -27,7 +27,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (event.payload.username == "admin" && event.payload.password == "1234") {
         emit(state.copyWith(isAuthened: true));
         if (navigatorState.currentContext != null) {
-          Navigator.pushReplacementNamed(navigatorState.currentContext!, AppRoute.home);
+          Navigator.pushNamed(navigatorState.currentContext!, AppRoute.home);
         }
       }
       else {
