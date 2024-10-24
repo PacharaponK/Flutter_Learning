@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workshop01/src/app.dart';
+import 'package:workshop01/src/bloc/login/login_bloc.dart';
 import 'package:workshop01/src/pages/routes.dart';
 
 //Stateful Class, Variable Can Create and Change
@@ -12,7 +15,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  int count = 0;
 
   @override
   void initState() {
@@ -49,8 +51,13 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Debug: ${count}"),
+                      // Text("Debug: ${context.read<LoginBloc>().state.count}"), // one time read
                       // Separation of Concern
+                      BlocBuilder<LoginBloc, LoginState>(
+                        builder: (context, state) {
+                          return Text("DebugX: ${state.count}");
+                        },
+                      ),
                       IconButton(
                           onPressed: () {
                             _handleOnClickAdd();
@@ -120,14 +127,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _handleOnClickAdd() {
-    setState(() {
-      count++;
-    }); // state manage
+    context.read<LoginBloc>().add(LoginEventAdd());// state manage
   }
 
   void _handleOnClickRemove() {
-    setState(() {
-      count--;
-    }); // state manage
+    context.read<LoginBloc>().add(LoginEventRemove());// state manage
   }
 }

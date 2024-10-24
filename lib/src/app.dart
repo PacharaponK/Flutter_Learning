@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workshop01/src/bloc/login/login_bloc.dart';
 import 'package:workshop01/src/pages/home/home_page.dart';
 import 'package:workshop01/src/pages/routes.dart';
 import 'pages/login/login_page.dart';
@@ -8,10 +10,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Working Hour",
-      routes: AppRoute.all,
-      home: LoginPage(),
+
+    final loginBloc = BlocProvider(create: (context) => LoginBloc());
+
+    return MultiBlocProvider(
+      providers: [loginBloc],
+      child: MaterialApp(
+        title: "Working Hour",
+        routes: AppRoute.all,
+        home: LoginPage(),
+      ),
     );
   }
 }
