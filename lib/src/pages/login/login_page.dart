@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workshop01/src/pages/routes.dart';
 
+//Stateful Class, Variable Can Create and Change
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -46,10 +47,20 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ..._buildButtons(),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text("Debug: ${count}"),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.add)),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                      // Separation of Concern
+                      IconButton(
+                          onPressed: () {
+                            _handleOnClickAdd();
+                          },
+                          icon: Icon(Icons.add)),
+                      IconButton(
+                          onPressed: () {
+                            _handleOnClickRemove();
+                          },
+                          icon: Icon(Icons.remove)),
                     ],
                   )
                 ],
@@ -106,5 +117,17 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleOnSignUpClick() {
     Navigator.pushNamed(context, AppRoute.register);
+  }
+
+  void _handleOnClickAdd() {
+    setState(() {
+      count++;
+    }); // state manage
+  }
+
+  void _handleOnClickRemove() {
+    setState(() {
+      count--;
+    }); // state manage
   }
 }
