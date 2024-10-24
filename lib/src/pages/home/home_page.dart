@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WebApiService().feed();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +22,24 @@ class _HomePageState extends State<HomePage> {
           title: Text("Home Page"),
           backgroundColor: Colors.deepPurpleAccent,
         ),
-        body: Center(child: Text("1234")));
+        body: Container(
+          child: FutureBuilder(future: WebApiService().feed(), builder: (context, snapshot){
+            if (snapshot.hasData == false) {
+              return Text("Loading...");
+            }
+
+            final youtubeData = snapshot.data;
+
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...youtubeData!.map((e) => Text(e.title))
+                ],
+              ),
+            );
+          })
+        ));
   }
 }
